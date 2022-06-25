@@ -1,0 +1,54 @@
+// SQL Query Builder - It should be close to SQL but with flexibility of TS
+
+/* Todo: Handle 
+    1, SELECT Column
+    1, LIMIT OFFSET
+    2, SWITCH CASE (new syntax)
+    3, JSON AGG
+    4, SQL Subquery
+    5, 
+*/
+
+SELECT COLUMN1 FROM TABLE_NAME;
+
+Expected format =
+
+Normal Case
+select(tableObjectOrSomething).columns({
+    column1, // Return the column name as it is. So output will be "tableName"."columnName" problem will be when you are joining same table twice
+    columnNameToOverride: "orginal_column_name", // Column name to override,
+    innerJoinedColumn: "mainTable"."secondColumn"
+})
+Different Approach
+select(tableObjectOrSomething).columns(
+    column1, // Return the column name as it is. So output will be "tableName"."columnName" problem will be when you are joining same table twice
+    coulm1.As(columnNameToOverride), // Column name to override,
+    "mainTableAlias"."secondColumn".AS('CoverUpName')
+)
+.where({
+    [column, '<', 10]
+})
+.toCamelCase()
+.ToSQL();
+
+Inner sub query
+select('tableName').columns({
+    column1, // Return the column name as it is
+    select('tableName').columns({
+        column1, // Return the column name as it is
+
+    })
+    .where({
+        [column, '<', 10]
+    })
+    .toCamelCase()
+
+})
+.where({
+    [column, '<', 10]
+})
+.toCamelCase()
+
+Todo: JSON aggregate
+
+====================================================
