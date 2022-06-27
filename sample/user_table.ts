@@ -1,11 +1,21 @@
 import SetTableName from '../utils/decorator/tableName.decorator';
 
-export class BaseDto {
-  public TableName!: string;
-}
+export type BaseDto = {
+  TableName: string;
+};
+
+export type IUserTableDto = {
+  TableName: string;
+  id: number;
+  firstName: string;
+  lastName: string;
+  age: number;
+};
 
 @SetTableName("user")
-export class UserTableDto extends BaseDto {
+export class UserTableDto implements BaseDto {
+  TableName!: string;
+
   id!: number;
 
   firstName!: string;
