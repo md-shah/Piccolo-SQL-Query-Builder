@@ -1,6 +1,6 @@
 > `Note: This package is not for any kind of Application grade usage. I created this to learn and understand in depth TypeScript. I hope one day I can make this production ready :)`
 
-# SHA-Query - A SQL query builder!
+# Piccolo - A SQL query builder!
 
 Planning to build a type-safe SQL query builder, which can give type-suggestions of the column within the scope. Primarily focussed on PostgreSQL.
 
